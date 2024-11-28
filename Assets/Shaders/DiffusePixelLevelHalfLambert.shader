@@ -1,5 +1,5 @@
 
-Shader "Book/DiffusePixelLevel"
+Shader "Book/DiffusePixelLevelHalfLambert"
 {
     Properties
     {
@@ -41,7 +41,7 @@ Shader "Book/DiffusePixelLevel"
             fixed4 frag(v2f i) : SV_Target {
                 fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz;
                 fixed3 worldLight = normalize(_WorldSpaceLightPos0.xyz);
-                fixed3 diffuse = _LightColor0.rgb * _Diffuse.rgb * saturate(dot(i.worldNormal, worldLight));
+                fixed3 diffuse = _LightColor0.rgb * _Diffuse.rgb * saturate(0.5 * dot(i.worldNormal, worldLight) + 0.5);
                 fixed3 color = ambient + diffuse;
                 return fixed4(color, 1.0);
             }
