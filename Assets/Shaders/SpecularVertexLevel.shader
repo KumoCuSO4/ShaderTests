@@ -58,4 +58,5 @@ Shader "Book/SpecularVertexLevel"
             ENDCG
         }
     }
+    Fallback "Specular"
 }
